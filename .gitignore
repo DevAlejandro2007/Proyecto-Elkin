@@ -1,0 +1,45 @@
+# Caché de Python
+__pycache__/
+*.pyc
+
+# Archivos de configuración local
+*.api
+.api
+
+# Archivos de construcción de PyInstaller/Py2exe
+
+build/
+dist/
+
+
+# Entornos virtuales de Python
+
+bin/
+include/
+lib/
+lib64
+pyvenv.cfg
+
+# Si usas Vagrant
+.vagrant/
+
+# Archivos de discos virtuales
+*.vdi
+*.vmdk
+*.vhd
+*.vhdx
+
+# Configuración VirtualBox/VMware
+*.vbox
+*.vbox-prev
+*.vmwarevm/
+*.vmx
+*.nvram
+*.vmem
+
+# Archivos temporales
+*.log
+*.tmp
+*.swp
+
+.venv
