@@ -9,8 +9,6 @@ utilizado hasta la fecha}
 print("Alejandro Rojas Benitez")
 print("Johan Yesid Tavera Zapata")
 print("Jose Manuel Mesa Ospina")
-print("Andrey")
-
 
 import numpy as np
 np.random.seed(42)
@@ -34,7 +32,6 @@ Saldo_pendiente = Valor_credito_solicitado - Monto_pagado
 #precio por facultades
 
 Ciencias_Administrativas_Agropecuarias = [admin_empresas:=3959700,veterianaria:=10700000,zootecnia:=8976000,admin_empresas_agro:=8174000]
+Ciencias_Sociales_Educacion = [derecho:=6545000,psicologia:=6545000,periodismo:=7469000,Educaion_infantil:=4553000]
+Ingenierias = [industrial:=660000,informatica:= 7770000, ambiental:=7552000,alimentos:=7415000]
 
-
-#VENTANA DE INICIO, APARECE LOGO DE UNILASALLISTA/ COOPERATIVA FINANCIERA DE CREDITOS
-#COOPLA (COOPERATIVA LA SALLISTA)
