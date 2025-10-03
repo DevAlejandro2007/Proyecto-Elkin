@@ -4,15 +4,15 @@ EL PROYECTO ES:
 Simular una entidad financiera que gestiona creditos estudiantiles {puede ser propia de la U 
 o tambien puede ser externa, la idea es implementar todos los tipos de bases de datos que hemos 
 utilizado hasta la fecha}
-
 """
 
 print("Alejandro Rojas Benitez")
 print("Johan Yesid Tavera Zapata")
 print("Jose Manuel Mesa Ospina")
+print("Andrey")
+
 
 import numpy as np
-
 np.random.seed(42)
 n_samples = 200
 
@@ -30,3 +30,11 @@ Plazo = np.random.randint(24, 60, n_samples)
 Cuota_mensual = (Valor_credito_solicitado * (1 + (Tasa_interés/100)*Plazo)) // Plazo
 Monto_pagado = np.random.randint(0, Valor_credito_solicitado//2, n_samples)
 Saldo_pendiente = Valor_credito_solicitado - Monto_pagado
+
+#precio por facultades
+
+Ciencias_Administrativas_Agropecuarias = [admin_empresas:=3959700,veterianaria:=10700000,zootecnia:=8976000,admin_empresas_agro:=8174000]
+
+
+#VENTANA DE INICIO, APARECE LOGO DE UNILASALLISTA/ COOPERATIVA FINANCIERA DE CREDITOS
+#COOPLA (COOPERATIVA LA SALLISTA)

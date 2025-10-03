@@ -1,0 +1,4 @@
+En esta carpeta trabajara yesid, el profe dijo wue se puede hacer tipo pagina web con api 
+y bases de datos, en ese caso, yesid puedes utilizar esta carpeta para todo el front. 
+
+Recuerda que es una cooperativa de Unilasallista, de nombre "coopla"
