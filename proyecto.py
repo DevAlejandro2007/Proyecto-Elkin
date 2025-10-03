@@ -9,7 +9,7 @@ utilizado hasta la fecha}
 
 print("Alejandro Rojas Benitez")
 print("Johan Yesid Tavera Zapata")
-print("Jose Manuel Mesa")
+print("Jose Manuel Mesa Ospina")
 
 import numpy as np
 
