@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+@layer base {
+    body {
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@layer utilities {
+
+    .scroll-personalizada {
+        scrollbar-color: transparent transparent;
+        scrollbar-width: none;
+      }
+    
+      .scroll-personalizada::-webkit-scrollbar {
+        width: none;
+        height: none;
+      }
+    
+      .scroll-personalizada::-webkit-scrollbar-thumb {
+        background-color: transparent;
+      }
+}
