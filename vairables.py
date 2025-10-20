@@ -10,6 +10,7 @@ print("Alejandro Rojas Benitez")
 print("Johan Yesid Tavera Zapata")
 print("Jose Manuel Mesa Ospina")
 print("Andrés Felipe Escobar Patiño")
+print("Andrey calle corrales")
 
 import numpy as np
 np.random.seed(42)
@@ -43,4 +44,13 @@ Saldo_pendiente = Valor_credito_solicitado - Monto_pagado
 Ciencias_Administrativas_Agropecuarias = [admin_empresas:=3959700,veterianaria:=10700000,zootecnia:=8976000,admin_empresas_agro:=8174000]
 Ciencias_Sociales_Educacion = [derecho:=6545000,psicologia:=6545000,periodismo:=7469000,Educaion_infantil:=4553000]
 Ingenierias = [industrial:=660000,informatica:= 7770000, ambiental:=7552000,alimentos:=7415000]
+
+
+# Variables adicionales
+
+# 1 = sí, 0 = no
+Retraso_pago = np.random.choice([0, 1], n_samples)  
+Tiene_aval = np.random.choice([0, 1], n_samples)     
+Satisfaccion = np.random.randint(1, 6, n_samples)    
+
 
