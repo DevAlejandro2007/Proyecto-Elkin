@@ -1,14 +1,15 @@
 from fastapi import APIRouter, Request, Form, HTTPException
 from fastapi.responses import JSONResponse, HTMLResponse
-from config import templates, COLECCION
 import sqlite3
 
+# configuracion del router
 router = APIRouter(
     prefix="/login",
     tags=["Login"],
     responses={404:{"message":"pagina no encontrada"}}
 )
 
+# valida si el usuario esta disponible 
 def validar_usuario(username: str, password: str):
     conn = sqlite3.connect("usuarios.db")
     cursor = conn.cursor()
@@ -17,6 +18,7 @@ def validar_usuario(username: str, password: str):
     conn.close()
     return user
 
+#endpoint "/login/"
 @router.post("/login/",response_class=HTMLResponse)
 async def login(data: dict):
     username = data.get("username")

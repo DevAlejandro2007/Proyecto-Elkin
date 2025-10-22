@@ -38,19 +38,12 @@ Estado_credito = np.random.choice([1, 2, 3, 4], n_samples, p=[0.7, 0.15, 0.1, 0.
 Cuota_mensual = (Valor_credito_solicitado * (1 + (Tasa_interés/100)*Plazo)) // Plazo
 Monto_pagado = np.random.randint(0, Valor_credito_solicitado//2, n_samples)
 Saldo_pendiente = Valor_credito_solicitado - Monto_pagado
-
 #precio por facultades
-
 Ciencias_Administrativas_Agropecuarias = [admin_empresas:=3959700,veterianaria:=10700000,zootecnia:=8976000,admin_empresas_agro:=8174000]
 Ciencias_Sociales_Educacion = [derecho:=6545000,psicologia:=6545000,periodismo:=7469000,Educaion_infantil:=4553000]
 Ingenierias = [industrial:=660000,informatica:= 7770000, ambiental:=7552000,alimentos:=7415000]
-
-
 # Variables adicionales
-
 # 1 = sí, 0 = no
 Retraso_pago = np.random.choice([0, 1], n_samples)  
 Tiene_aval = np.random.choice([0, 1], n_samples)     
 Satisfaccion = np.random.randint(1, 6, n_samples)    
-
-

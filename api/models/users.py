@@ -1,5 +1,6 @@
 from database.db_sqlLite import get_sql_connection
 
+#funcion de la tabla de usuarios ( formato )
 def crear_tabla_usuarios():
     conn = get_sql_connection()
     cursor = conn.cursor()
@@ -13,6 +14,7 @@ def crear_tabla_usuarios():
     conn.commit()
     conn.close()
 
+# funcion para registrar usuarios 
 def registrar_usuario(username: str, password: str):
     conn = get_sql_connection()
     cursor = conn.cursor()
@@ -25,10 +27,3 @@ def registrar_usuario(username: str, password: str):
     finally:
         conn.close()
 
-def validar_usuario(username: str, password: str):
-    conn = get_sql_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
-    user = cursor.fetchone()
-    conn.close()
-    return user is not None

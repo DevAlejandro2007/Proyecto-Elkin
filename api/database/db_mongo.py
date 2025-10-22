@@ -1,9 +1,11 @@
 import pymongo
 
+#coneccion con mongodb
 MONGO_URI = "mongodb://localhost:27017/"
 NOMBRE_DATABASE = "coofla"
 MONGO_COLECCION = "form"
 
+#try ( por si la base genera error )
 try: 
     cliente = pymongo.MongoClient(MONGO_URI, serverSelectionTimeoutMS = 2000)
     cliente.server_info()

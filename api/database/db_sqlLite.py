@@ -5,6 +5,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "usuarios.db")
 
+# coneccion con sql lite 
 def get_sql_connection():
     try:
         conn = sqlite3.connect(DB_PATH)
