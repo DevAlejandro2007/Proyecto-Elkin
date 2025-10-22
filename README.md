@@ -1,11 +1,11 @@
-# Proyecto COOPLA ( COOPERATIVA UNILASALLISTA ) 
+# Proyecto COOFLA ( COOPERATIVA FINANCIERA UNILASALLISTA ) 
 
 ## CONTENIDOS 
 
 * [Descripción](#descripción)
 * [Características](#características)
 * [Tecnologías](#tecnologías)
-
+* [Arquitectura](#arquitectura)
 
 ---
 
@@ -25,3 +25,29 @@ Este es un **proyecto de ingeniería informática especificamente de la materia:
 * Hecho 100% por estudiantes de Unilasallista
 
 # Tecnologias 
+* **FastApi**: Creación de una Api que conecta con las bases de datos y la logica del arbol de decisiones
+* **SQL Lite**: Esta base de datos es la escogida para guardar los usuarios de la plataforma
+* **MongoDB**: Esta base de datos es la escogida para guardar los formularios hechos en la plataforma
+
+# Arquitectura
+
+```
+FastApi-Mongod/
+├─ api/
+│  ├─ main.py
+│  ├─ config.py
+│  ├─ templates/
+│  │    └─ PAGINA WEB
+│  ├─ routers/             # Rutas (endpoints)
+│  │   ├─ forms.py
+│  │   └─ login.py
+│  ├─ models/
+│  │     ├─ cuestionario.py
+│  │     ├─users.py
+│  │     └─ variables.py
+│  └─dabatse/
+│       ├─db_mongo.py
+│       └─db_sqlLite.py
+├─ README.md               # Documentación del proyecto
+└─ .gitignore
+```
