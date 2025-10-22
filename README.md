@@ -24,10 +24,14 @@ Este es un **proyecto de ingeniería informática especificamente de la materia:
 * Bases de datos **SQL y NO SQL** donde se puede guardar informacion tando de los deudores y sus creditos 
 * Hecho 100% por estudiantes de Unilasallista
 
+---
+
 # Tecnologias 
 * **FastApi**: Creación de una Api que conecta con las bases de datos y la logica del arbol de decisiones
 * **SQL Lite**: Esta base de datos es la escogida para guardar los usuarios de la plataforma
 * **MongoDB**: Esta base de datos es la escogida para guardar los formularios hechos en la plataforma
+
+---
 
 # Arquitectura
 
@@ -51,3 +55,5 @@ FastApi-Mongod/
 ├─ README.md               # Documentación del proyecto
 └─ .gitignore
 ```
+
+---
