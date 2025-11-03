@@ -1,6 +1,29 @@
 @import "tailwindcss";
 
+
+@theme {
+  --color-bluedark-50:  #E8EAFB;
+  --color-bluedark-100: #C8CDF7;
+  --color-bluedark-200: #A4ADF2;
+  --color-bluedark-300: #808EEC;
+  --color-bluedark-400: #5C6FE6;
+  --color-bluedark-500: #384FE0;
+  --color-bluedark-600: #2B3FC0;
+  --color-bluedark-700: #222F90;
+  --color-bluedark-800: #1B256F;
+  --color-bluedark-900: #1A215E;
+  --color-bluedark-950: #111643;
+}
+
+
 @layer base {
+
+  * {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    outline: none;
+  }
+
     body {
         overflow: hidden;
         margin: 0;
@@ -23,4 +46,60 @@
       .scroll-personalizada::-webkit-scrollbar-thumb {
         background-color: transparent;
       }
+}
+
+@theme {
+  --animate-fade-out-left: fade-out-left 1.7s ease-in-out forwards;
+  --animate-fade-in-right: fade-in-right 1.7s ease-in-out forwards;
+  --animate-slice-left: slice-left 1.7s ease-in-out forwards;
+  --animate-slice-right: slice-right 1.7s ease-in-out forwards;
+  
+
+  @keyframes fade-out-left {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0.8; 
+      transform: translateX(-100%) scaleX(0.7) scaleY(0.7);
+    }
+  }
+
+  @keyframes fade-in-right {
+    0% {
+      opacity: 0.8;
+      transform: translateX(0);
+      bacground-color: inherit;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1; 
+      transform: translateX(-143%) scaleX(1.43) scaleY(1.43);
+    }
+  }
+
+  @keyframes slice-left {
+    0% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slice-right {
+    0% {
+      opacity: 0;
+      transform: translateX(0%);
+    }
+    100% {
+      opacity: 0.8;
+      transform: translateX(-214%);
+    }
+  }
 }
