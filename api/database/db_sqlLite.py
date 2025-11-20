@@ -12,5 +12,5 @@ def get_sql_connection():
         conn.row_factory = sqlite3.Row
         return conn
     except sqlite3.Error as e:
-        print("❌ Error al conectar a la base de datos SQLite:", e)
+        print(" Error al conectar a la base de datos SQLite:", e)
         return None

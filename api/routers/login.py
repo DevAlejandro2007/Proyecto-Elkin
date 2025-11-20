@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Request, Form, HTTPException
-from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi import APIRouter, HTTPException
 import sqlite3
 
 # configuracion del router
@@ -19,7 +18,7 @@ def validar_usuario(username: str, password: str):
     return user
 
 #endpoint "/login/"
-@router.post("/login/",response_class=HTMLResponse)
+@router.post("/")
 async def login(data: dict):
     username = data.get("username")
     password = data.get("password")

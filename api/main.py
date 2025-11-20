@@ -1,16 +1,30 @@
-from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse
-from config import templates
-from routers import login, forms
+from fastapi import FastAPI, Request
+from routers import login, forms, register
+from fastapi.middleware.cors import CORSMiddleware
 
 #variable fasapi
 app = FastAPI()
 
+# Configuracion CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+origins = [
+    "http://localhost:5173"
+]
+
+
 #routers ( endpoints )
 app.include_router(login.router)
 app.include_router(forms.router)
+app.include_router(register.router)
 
 # main ( raiz )
-@app.get("/",response_class= HTMLResponse)
+@app.get("/")
 async def root(request: Request):
-    return templates.TemplateResponse("Index.html",{"request":request})
+    return {"message": "API de autenticacion. Usa /login/ para iniciar sesion y /register/ para registrarte."}

@@ -15,3 +15,4 @@ try:
 except Exception as e:
     print("error en la base de datos:", e)
     COLLECCION = None
+
