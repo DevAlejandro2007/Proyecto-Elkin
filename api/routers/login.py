@@ -9,10 +9,10 @@ router = APIRouter(
 )
 
 # valida si el usuario esta disponible 
-def validar_usuario(username: str, password: str):
+def validar_usuario(id: int ,username: str, password: str):
     conn = sqlite3.connect("usuarios.db")
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
+    cursor.execute("SELECT * FROM users WHERE id=? AND username=? AND password=?", (id, username, password))
     user = cursor.fetchone()
     conn.close()
     return user
@@ -22,11 +22,12 @@ def validar_usuario(username: str, password: str):
 async def login(data: dict):
     username = data.get("username")
     password = data.get("password")
+    id = data.get("id")
 
     if not username or not password:
         raise HTTPException(status_code=400, detail="Faltan credenciales")
 
-    if validar_usuario(username, password):
+    if validar_usuario(id,username, password):
         return {"message": "✅ Login exitoso"}
     else:
         raise HTTPException(status_code=401, detail="Usuario o contraseña incorrectos")
