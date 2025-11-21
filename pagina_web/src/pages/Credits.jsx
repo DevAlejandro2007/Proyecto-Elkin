@@ -1,57 +1,104 @@
+import { Input } from "../components/ui/Input";
 import { Button } from "../components/ui/Button";
+import { H2 } from "../components/ui/H2";
 
-import { useEffect, useState } from "react"
+import { useState } from "react";
 
-const planes = [
-  {
-    title: "Plan No 0",
-    description: "Ideal para quienes están comenzando su aventura financiera. Ofrece tasas de interés competitivas y plazos flexibles para préstamos personales y comerciales.",
-    link: "planno",
-    img: "https://img.freepik.com/vector-gratis/libros-prestamos-dinero-becas_603843-826.jpg",
-  },
-  {
-    title: "Plan Premium 1",
-    description: "Ideal para quienes están comenzando su aventura financiera. Ofrece tasas de interés competitivas y plazos flexibles para préstamos personales y comerciales.",
-    link: "planpremium",
-    img: "https://img.freepik.com/vector-gratis/libros-prestamos-dinero-becas_603843-826.jpg",
-  },
-  {
-    title: "Plan Básico 2",
-    description: "Ideal para quienes están comenzando su aventura financiera. Ofrece tasas de interés competitivas y plazos flexibles para préstamos personales y comerciales.",
-    link: "planbasico",
-    img: "https://img.freepik.com/vector-gratis/libros-prestamos-dinero-becas_603843-826.jpg",
-  }
+import { Link } from "react-router-dom";
 
-]
+import { upForm } from "../utils/upForm";
 
 export function Credits() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    document: "",
+    semestre: "",
+    typeDocument: "",
+    estadoCivil: "",
+    typeCredit: "",
+  });
 
-  const [cont, setCont] = useState(0);
-  const [objeto, setObjeto ] = useState(planes[0]);
+  const handleUp = (e) => {
+    e.preventDefault();
 
-  useEffect(() => {
-     const intervalo = setInterval(() => {
-       setCont(prev => { 
-      const next = prev === planes.length-1 ? 0 : prev + 1;
-      setObjeto(planes[next]);
-      return next;
-     } );
-    }, 10000);
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
 
-    return () => clearInterval(intervalo);
-  }, [ ]);
+    console.table(formData);
+  };
 
   return (
-    <>
-      <div className="w-full flex flex-col flex-1 p-8 justify-center items-center">
-        <article className="justify-center w-10/12 items-center flex flex-col space-y-8">
-          <h2 className="font-bold text-2xl self-start text-bluedark-800">{objeto.title}</h2>
-          <p className="text-lg leading-relaxed tracking-wide">{objeto.description}</p>
-          <Button to={`${objeto.link}`} className="">Solicitar este Credito</Button>
-          <img src={objeto.img} alt="" className="object-cover scale-50 hidden" />
-        </article>        
-        {cont}
-      </div>
-    </>
+    <div className="flex flex-1 lg:justify-end justify-center items-center lg:before:absolute lg:before:left-[30%] lg:before:w-1/3 lg:before:bg-bluedark-900 lg:before:rotate-35 lg:before:h-[calc(100%_+_999px)] lg:before:-top-100 overflow-clip before:-z-10 relative z-10">
+      <form
+        className="lg:w-2/5 w-full bg-neutral-50 h-full flex flex-col items-start justify-center gap-y-8 py-8 px-12"
+        onSubmit={upForm}
+      >
+        <H2>
+          Solicita tu Credito
+        </H2>
+        <Input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleUp}
+          placeholder="Correo"
+        />
+        <Input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleUp}
+          placeholder="Contraseña"
+        />
+        <Input
+          type="text"
+          name="semestre"
+          value={formData.semestre}
+          onChange={handleUp}
+          placeholder="Semestre"
+        />
+        <Input
+          type="text"
+          name="document"
+          value={formData.document}
+          onChange={handleUp}
+          placeholder="Numero de Documento"
+        />
+        <Input
+          type="text"
+          name="typeCredit"
+          value={formData.typeCredit}
+          onChange={handleUp}
+          placeholder="Numero de Documento"
+        />
+        <Input
+          type="text"
+          name="typeDocument"
+          value={formData.typeDocument}
+          onChange={handleUp}
+          placeholder="Tipo de Documento"
+        />
+        <Input
+          type="text"
+          name="estadoCivil"
+          value={formData.estadoCivil}
+          onChange={handleUp}
+          placeholder="Estado Civil"
+        />
+        <Button className="w-3/5">Registrarse</Button>
+        <p className="text-black">
+          ¿Ya tienes una cuenta?{" "}
+          <Link
+            to="/Login"
+            className="text-blue-700 hover:underline transition-colors duration-150 ease-in-out"
+          >
+            Inicia Sesion
+          </Link>
+        </p>
+      </form>
+    </div>
   );
 }

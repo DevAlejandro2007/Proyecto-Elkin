@@ -1,20 +1,42 @@
 import { Input } from "../components/ui/Input";
 import { Button } from "../components/ui/Button";
+import { H2 } from "../components/ui/H2";
 
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+
+import { upForm } from "../utils/upForm"
 
 export function Login() {
+
+  const [ formData, setFormData ] = useState({
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+
+    console.table(formData);
+  };
+
+
   return (
-    <div className="flex flex-1 flex-col justify-center items-center before:absolute before:left-[30%] before:w-1/3 before:bg-[#1A215E] before:rotate-35 before:h-[calc(100%_+_999px)] before:-top-100 overflow-clip before:-z-10 relative z-10 rounded-lg text-white">
+    <div className="flex flex-1 flex-col justify-center items-end before:absolute before:left-[30%] before:w-2/5 before:bg-bluedark-900 before:rotate-35 before:h-[calc(100%_+_999px)] before:-top-100 overflow-clip before:-z-10 relative z-10">
 
-        <form className="self-center ring-3 ring-black w-[30%] bg-neutral-50 h-auto flex flex-col items-center gap-y-8 rounded-xl py-8 my-8">
-            <h1 className="text-black font-semibold text-3xl leading-relaxed underline underline-offset-4">Iniciar Sesión</h1>
-            <Input type="email" placeholder="Correo" />
-            <Input type="password" placeholder="Contraseña" />
-            <Input type="password" placeholder="Confrima tu contraseña" />
-            <Button className="w-3/5">Iniciar Sesión</Button>
+        <form className="w-2/5 bg-neutral-50 h-full flex flex-col items-start justify-center gap-y-8 py-8 px-12" onSubmit={upForm}>
+            <H2>Iniciar Sesión</H2>
+            <Input type="email" placeholder="Correo" onChange={handleChange} />
+            <Input type="password" placeholder="Contraseña" onChange={handleChange} />
+            <Input type="password" placeholder="Confirma tu contraseña" onChange={handleChange} />
+            <Button className="w-3/5" type="submit">Iniciar Sesión</Button>
             <p className="text-black">¿No tienes una cuenta?{" "}<Link to="/Register" className="text-blue-700 hover:underline transition-colors duration-150 ease-in-out">Registrate</Link></p>
-
         </form>
     </div>
   )
