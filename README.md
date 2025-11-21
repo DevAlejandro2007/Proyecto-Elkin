@@ -26,7 +26,7 @@ Este es un **proyecto de ingeniería informática especificamente de la materia:
 
 ---
 
-# Tecnologias 
+# Tecnologías 
 * **FastApi**: Creación de una Api que conecta con las bases de datos y la logica del arbol de decisiones
 * **SQL Lite**: Esta base de datos es la escogida para guardar los usuarios de la plataforma
 * **MongoDB**: Esta base de datos es la escogida para guardar los formularios hechos en la plataforma
