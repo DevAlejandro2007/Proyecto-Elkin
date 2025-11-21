@@ -9,7 +9,7 @@ router = APIRouter(
 )
 
 # registra un nuevo usuario
-def registrar_usuario(id: str, username: str, password: str):
+def registrar_usuario(id: int, username: str, password: str):
     conn = sqlite3.connect("usuarios.db")
     cursor = conn.cursor()
     cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (id,username, password))
@@ -27,7 +27,7 @@ async def register(data: dict):
         raise HTTPException(status_code=400, detail="Faltan credenciales")
 
     try:
-        registrar_usuario(username, password)
+        registrar_usuario(id,username, password)
         return {"message": " Registro exitoso"}
     except sqlite3.IntegrityError:
         raise HTTPException(status_code=409, detail="El usuario ya existe")

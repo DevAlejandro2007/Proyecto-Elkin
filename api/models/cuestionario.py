@@ -1,9 +1,10 @@
 from database.db_mongo import COLLECCION
 
 #funcion de guardar cuestionario en la base de datos 
-def guardar_cuestionario(id: int, preguntas: list):
+def guardar_cuestionario(id: int, username: str, preguntas: list):
     nuevo = {
-        "usuario": id,
+        "id": id,
+        "usuario": username,
         "preguntas":preguntas
     }
     COLLECCION.insert_one(nuevo)
