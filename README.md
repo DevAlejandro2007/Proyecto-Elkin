@@ -47,11 +47,11 @@ FastApi-Mongod/
 │  │   └─ login.py
 │  ├─ models/
 │  │     ├─ cuestionario.py
-│  │     ├─users.py
+│  │     ├─ users.py
 │  │     └─ variables.py
 │  └─dabatse/
-│       ├─db_mongo.py
-│       └─db_sqlLite.py
+│       ├─ db_mongo.py
+│       └─ db_sqlLite.py
 ├─ README.md               # Documentación del proyecto
 └─ .gitignore
 ```
