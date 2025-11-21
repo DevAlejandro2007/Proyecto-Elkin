@@ -7,6 +7,11 @@ export default defineConfig({
   plugins: [react(), tailwindcss() ],
    server: {
     host: true,   // o '0.0.0.0'
-    port: 5173
+    port: 5173,
+    allowedHosts: [
+      "uredinial-larue-febriferous.ngrok-free.dev"
+    ]
   }
 })
+
+
