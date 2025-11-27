@@ -56,19 +56,15 @@ FastApi-Mongod/
 ├─ README.md               # Documentación del proyecto
 └─ .gitignore
 ```
-# Backend
-
-*[main.py](#main.py)
-
-
-
-
-
-
-
+# Backend:
 
 * Carpeta API: Contiene todas las subcarpetas, archivos y conecciones que crearemos durante todo el proyecto
-# main.py
+* [main.py](#main)
+* 
+
+
+
+# main
 ## Inicialización de la aplicación
 ```
 app = FastAPI()
@@ -99,11 +95,12 @@ Habilita CORS para permitir que otras aplicaciones (por ejemplo un frontend en R
 
 ```
 app.include_router(login.router)
+
 app.include_router(forms.router)
+
 app.include_router(register.router)
+
 app.include_router(view_form.router)
-
-
 ```
 
 Esto permite separar la API en módulos más ordenados.
@@ -111,10 +108,21 @@ Cada archivo dentro de /routers contiene endpoints específicos, por ejemplo:
 
 ### Routers
 
-- login: Manejo de autenticación / inicio de sesión.
-- register: Registro de usuarios.
-- forms: Procesamiento o creación de formularios.
-- view_form: Visualización de los formularios almacenados.
+- **login**: Manejo de autenticación / inicio de sesión.
+- **register**: Registro de usuarios.
+- **forms**: Procesamiento o creación de formularios.
+- **view_form**: Visualización de los formularios almacenados.
+
+Favorece la escalabilidad y mantenimiento del código.
+
+### Endpoint raíz 
+```
+@app.get("/")
+async def root(request: Request):
+    return {"message": "API de autenticacion..."}
+```
+Retorna un mensaje informativo cuando se accede a la raíz del servidor.
+Sirve como pantalla de bienvenida para indicar cómo usar los primeros endpoints.
 
 * Archivo config.py:
 
