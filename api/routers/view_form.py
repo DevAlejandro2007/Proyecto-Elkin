@@ -1,17 +1,25 @@
-"""
-EL PROYECTO ES:
+from fastapi import APIRouter, HTTPException
+from models import cuestionario
 
-Simular una entidad financiera que gestiona creditos estudiantiles {puede ser propia de la U 
-o tambien puede ser externa, la idea es implementar todos los tipos de bases de datos que hemos 
-utilizado hasta la fecha}
-"""
+router = APIRouter(
+    prefix="/view_form",
+    tags=["forms"],
+    responses={404:{"message":"pagina no encontrada"}}
+)
 
-print("Alejandro Rojas Benitez")
-print("Johan Yesid Tavera Zapata")
-print("Jose Manuel Mesa Ospina")
-print("Andrés Felipe Escobar Patiño")
-print("Andrey calle corrales")
 
+informacion = {}
+
+@router.get("/")  
+async def view_form(id: str):
+    cuestionarios = cuestionario.obtener_cuestionarios(id)
+    informacion = cuestionarios
+    if not cuestionarios:
+        raise HTTPException(status_code=404, detail="Cuestionario no encontrado")
+    return {
+        "status": 200,
+        "data": cuestionarios
+    }
 import numpy as np
 np.random.seed(42)
 n_samples = 200

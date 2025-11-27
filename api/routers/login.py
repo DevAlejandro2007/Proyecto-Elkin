@@ -27,7 +27,7 @@ async def login(data: dict):
     if not username or not password:
         raise HTTPException(status_code=400, detail="Faltan credenciales")
 
-    if validar_usuario(id,username, password):
-        return {"message": "✅ Login exitoso"}
+    if await validar_usuario(id,username, password):
+        return {"message": "Inicio de sesión exitoso"}
     else:
         raise HTTPException(status_code=401, detail="Usuario o contraseña incorrectos")

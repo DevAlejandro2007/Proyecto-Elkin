@@ -28,7 +28,7 @@ async def register(data: dict):
 
     try:
         registrar_usuario(id,username, password)
-        return {"message": " Registro exitoso"}
+        return {"status": 200, "message": "Usuario registrado exitosamente"}
     except sqlite3.IntegrityError:
         raise HTTPException(status_code=409, detail="El usuario ya existe")
     

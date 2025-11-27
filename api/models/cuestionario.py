@@ -1,9 +1,9 @@
 from database.db_mongo import COLLECCION
 
 #funcion de guardar cuestionario en la base de datos 
-def guardar_cuestionario(id: int, username: str, preguntas: list):
+def guardar_cuestionario(id: str, username: str, preguntas: dict):
     nuevo = {
-        "id": id,
+        "_id": id,
         "usuario": username,
         "preguntas":preguntas
     }
@@ -11,4 +11,4 @@ def guardar_cuestionario(id: int, username: str, preguntas: list):
     return nuevo
 # busca y devuelve el cuestionario 
 def obtener_cuestionarios(id: int):
-    return list(COLLECCION.find({"id": id}, {"_id": 0}))
+    return list(COLLECCION.find({"_id": id}))

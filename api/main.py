@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request
-from routers import login, forms, register
+from routers import login, forms, register, view_form
 from fastapi.middleware.cors import CORSMiddleware
 
 #variable fasapi
@@ -23,7 +23,7 @@ origins = [
 app.include_router(login.router)
 app.include_router(forms.router)
 app.include_router(register.router)
-
+app.include_router(view_form.router)
 # main ( raiz )
 @app.get("/")
 async def root(request: Request):

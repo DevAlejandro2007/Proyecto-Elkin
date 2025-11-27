@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException    
 from models import cuestionario
 
 #configuracion del router
@@ -12,8 +12,19 @@ router = APIRouter(
 #/form, endpoint del formulario
 @router.post("/")
 async def form(data: dict):
+    id = data["id"]
     usuario = data["usuario"]
     preguntas = data["preguntas"]
-    cuestionario.guardar_cuestionario(usuario, preguntas)    
-    return {"message": "✅ Cuestionario guardado exitosamente"}
-     
+
+    await cuestionario.guardar_cuestionario(id, usuario, preguntas)
+
+    confirmacion = await cuestionario.obtener_cuestionarios(id)
+
+    if not confirmacion:
+        raise HTTPException(408, "Error al guardar el cuestionario")
+
+    return {
+        "status": 201,
+        "message": "Guardado correctamente",
+        "data": confirmacion
+    }
