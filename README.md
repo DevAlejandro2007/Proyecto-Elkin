@@ -60,6 +60,18 @@ FastApi-Mongod/
 
 * Carpeta API: Contiene todas las subcarpetas, archivos y conecciones que crearemos durante todo el proyecto
 * [main.py](#main.py)
+* [config.py](#congif.py)
+* [templates](#templates)
+* [routers](#routers)
+* [models](#models)
+* [database](#database)
+
+
+
+
+
+
+
 
 
 
