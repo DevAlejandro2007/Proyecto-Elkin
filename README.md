@@ -66,20 +66,6 @@ FastApi-Mongod/
 * [models](#models)
 * [database](#database)
 
-
-hola
-hola
-hpla
-
-sdfs
-g
-adf
-gs
-dfg
-sd
-fg
-
-
 # main
 ---
 ## Inicialización de la aplicación
