@@ -6,6 +6,7 @@
 * [Características](#características)
 * [Tecnologías](#tecnologías)
 * [Arquitectura](#arquitectura)
+* [Backend](#backend)
 
 ---
 
@@ -55,5 +56,68 @@ FastApi-Mongod/
 ├─ README.md               # Documentación del proyecto
 └─ .gitignore
 ```
+# Backend
+
+*[main.py](#main.py)
+
+
+
+
+
+
+
+
+* Carpeta API: Contiene todas las subcarpetas, archivos y conecciones que crearemos durante todo el proyecto
+# main.py
+## Inicialización de la aplicación
+```
+app = FastAPI()
+```
+Crea una instancia principal de FastAPI.
+Sobre este objeto se registran middleware, rutas y configuraciones, y es la base para ejecutar la API.
+
+## Configuracion CORS
+```
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+```
+Habilita CORS para permitir que otras aplicaciones (por ejemplo un frontend en React, Vue o Angular) puedan hacer solicitudes a esta API.
+
+### PARAMETROS 
+
+- allow_origins=["*"]: Permite solicitudes desde cualquier origen. (en producción es recomendable definir dominios específicos)
+- allow_credentials=True: Permite el uso de cookies y tokens en solicitudes.
+- allow_methods=["*"]: Se aceptan todos los métodos HTTP (GET, POST, PUT, DELETE etc).
+- allow_headers=["*"]: Se aceptan todos los tipos de encabezados.
+
+## Inclusión de routers (módulos con endpoints)
+
+```
+app.include_router(login.router)
+app.include_router(forms.router)
+app.include_router(register.router)
+app.include_router(view_form.router)
+
+
+```
+
+Esto permite separar la API en módulos más ordenados.
+Cada archivo dentro de /routers contiene endpoints específicos, por ejemplo:
+
+### Routers
+
+- login: Manejo de autenticación / inicio de sesión.
+- register: Registro de usuarios.
+- forms: Procesamiento o creación de formularios.
+- view_form: Visualización de los formularios almacenados.
+
+* Archivo config.py:
+
+ 
 
 ---
