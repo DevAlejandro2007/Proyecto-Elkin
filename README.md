@@ -60,11 +60,12 @@ FastApi-Mongod/
 
 * Carpeta API: Contiene todas las subcarpetas, archivos y conecciones que crearemos durante todo el proyecto
 * [main.py](#main)
-* 
 
 
 
-# main
+
+# main.py
+---
 ## Inicialización de la aplicación
 ```
 app = FastAPI()
@@ -72,6 +73,7 @@ app = FastAPI()
 Crea una instancia principal de FastAPI.
 Sobre este objeto se registran middleware, rutas y configuraciones, y es la base para ejecutar la API.
 
+---
 ## Configuracion CORS
 ```
 app.add_middleware(
@@ -84,6 +86,7 @@ app.add_middleware(
 ```
 Habilita CORS para permitir que otras aplicaciones (por ejemplo un frontend en React, Vue o Angular) puedan hacer solicitudes a esta API.
 
+---
 ### PARAMETROS 
 
 - allow_origins=["*"]: Permite solicitudes desde cualquier origen. (en producción es recomendable definir dominios específicos)
@@ -106,6 +109,7 @@ app.include_router(view_form.router)
 Esto permite separar la API en módulos más ordenados.
 Cada archivo dentro de /routers contiene endpoints específicos, por ejemplo:
 
+---
 ### Routers
 
 - **login**: Manejo de autenticación / inicio de sesión.
@@ -115,6 +119,7 @@ Cada archivo dentro de /routers contiene endpoints específicos, por ejemplo:
 
 Favorece la escalabilidad y mantenimiento del código.
 
+---
 ### Endpoint raíz 
 ```
 @app.get("/")
@@ -123,9 +128,5 @@ async def root(request: Request):
 ```
 Retorna un mensaje informativo cuando se accede a la raíz del servidor.
 Sirve como pantalla de bienvenida para indicar cómo usar los primeros endpoints.
-
-* Archivo config.py:
-
- 
 
 ---
