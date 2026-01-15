@@ -1,5 +1,6 @@
 from database.db_mongo import COLLECCION
 
+
 #funcion de guardar cuestionario en la base de datos 
 def guardar_cuestionario(id: str, username: str, preguntas: dict):
     nuevo = {

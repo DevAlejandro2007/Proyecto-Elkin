@@ -1,29 +1,52 @@
-from database.db_sqlLite import get_sql_connection
+from database.db_mongo import COLLECCION2
+from passlib.context import CryptContext
 
-#funcion de la tabla de usuarios ( formato )
-def crear_tabla_usuarios():
-    conn = get_sql_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
-    )
-    """)
-    conn.commit()
-    conn.close()
+pwd_context = CryptContext(
+    schemes=["bcrypt"],
+    deprecated="auto"
+)
+
+def hash_password(password: str) -> str:
+    return pwd_context.hash(password)
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return pwd_context.verify(plain_password, hashed_password)
 
 # funcion para registrar usuarios 
-def registrar_usuario(username: str, password: str):
-    conn = get_sql_connection()
-    cursor = conn.cursor()
-    try:
-        cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
-        conn.commit()
-        return True
-    except:
-        return False
-    finally:
-        conn.close()
+def registrar_usuario(id: int, username: str, password: str):
+    hashed_password = hash_password(password)
 
+    nuevo_usuario = {
+        "_id": id,
+        "username": username,
+        "password": hashed_password
+    }
+
+    COLLECCION2.insert_one(nuevo_usuario)
+    return {
+        "id": id,
+        "username": username
+    }
+
+
+
+# funcion para validar usuarios
+def validar_usuario(id: int, username: str) -> bool:
+    return COLLECCION2.find_one({
+        "$or": [
+            {"_id": id},
+            {"username": username}
+        ]
+    }) is not None
+
+# funcion para iniciar sesion
+def iniciar_sesion(id: int,username: str, password: str) -> bool:
+    user = COLLECCION2.find_one({"_id": id}) and COLLECCION2.find_one({"username": username})
+
+    if not user:
+        return False
+
+    if not verify_password(password, user["password"]):
+        return False
+
+    return True
