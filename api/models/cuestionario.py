@@ -8,7 +8,11 @@ def guardar_cuestionario(id: str, username: str, preguntas: dict):
         "usuario": username,
         "preguntas":preguntas
     }
-    COLLECCION.insert_one(nuevo)
+    try:
+        COLLECCION.insert_one(nuevo)
+    except Exception as e:
+        print("Error al guardar el cuestionario:", e)
+        raise Exception(f"No se pudo guardar el cuestionario: {str(e)}")
     return nuevo
 # busca y devuelve el cuestionario 
 def obtener_cuestionarios(id: int):

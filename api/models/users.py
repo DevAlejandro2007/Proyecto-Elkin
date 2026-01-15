@@ -40,13 +40,24 @@ def validar_usuario(id: int, username: str) -> bool:
     }) is not None
 
 # funcion para iniciar sesion
-def iniciar_sesion(id: int,username: str, password: str) -> bool:
-    user = COLLECCION2.find_one({"_id": id}) and COLLECCION2.find_one({"username": username})
+def iniciar_sesion(id: int, username: str, password: str) -> bool:
+    """
+    Busca al usuario por ID o username y valida la contraseña.
+    El usuario debe existir con al menos uno de los dos identificadores.
+    """
+    # Buscar al usuario por ID o por username
+    user = COLLECCION2.find_one({
+        "$or": [
+            {"_id": id},
+            {"username": username}
+        ]
+    })
 
     if not user:
         return False
 
-    if not verify_password(password, user["password"]):
+    # Validar que la contraseña sea correcta
+    if not verify_password(password, user.get("password", "")):
         return False
 
     return True

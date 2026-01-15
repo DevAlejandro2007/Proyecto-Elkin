@@ -16,9 +16,9 @@ async def form(data: dict):
     usuario = data["usuario"]
     preguntas = data["preguntas"]
 
-    await cuestionario.guardar_cuestionario(id, usuario, preguntas)
+    cuestionario.guardar_cuestionario(id, usuario, preguntas)
 
-    confirmacion = await cuestionario.obtener_cuestionarios(id)
+    confirmacion = cuestionario.obtener_cuestionarios(id)
 
     if not confirmacion:
         raise HTTPException(408, "Error al guardar el cuestionario")

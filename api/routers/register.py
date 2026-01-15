@@ -18,15 +18,14 @@ router = APIRouter(
 
 # registra un nuevo usuario
 def registrar_usuario(id: int, username: str, password: str):
-    if users.validar_usuario(id,username):
+    if users.validar_usuario(id, username):
         raise HTTPException(status_code=400, detail="El nombre de usuario o id ya existe")
-    hashed_password = users.hash_password(password)
-    return users.registrar_usuario(id, username,hashed_password)
+    # Aquí se pasa la contraseña sin hashear, users.registrar_usuario() la hasheará
+    return users.registrar_usuario(id, username, password)
 
 #endpoint "/register"
 @router.post("/", status_code=201)
 def register(data: RegisterRequest):
-
     nuevo_usuario = registrar_usuario(
         data.id,
         data.username,
