@@ -29,7 +29,6 @@ def registrar_usuario(id: int, username: str, password: str):
     }
 
 
-
 # funcion para validar usuarios
 def validar_usuario(id: int, username: str) -> bool:
     return COLLECCION2.find_one({
