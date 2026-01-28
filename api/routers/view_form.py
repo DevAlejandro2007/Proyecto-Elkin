@@ -28,7 +28,7 @@ async def obtener_usuario_autenticado(authorization: Optional[str] = Header(None
 async def view_form(id: str, usuario_autenticado: dict = Depends(obtener_usuario_autenticado)):
     """
     Obtiene un formulario específico por ID.
-    ⚠️ REQUIERE AUTENTICACIÓN (JWT token válido)
+    REQUIERE AUTENTICACIÓN (JWT token válido)
     
     Headers requerido:
         Authorization: Bearer <token>
@@ -42,7 +42,13 @@ async def view_form(id: str, usuario_autenticado: dict = Depends(obtener_usuario
     """
     try:
         cuestionarios = cuestionario.obtener_cuestionarios(id)
+        nucleo = cuestionario.obtener_nucleo(id)
         
+        respuesta = {
+            "cuestionarios": cuestionarios,
+            "nucleo": nucleo
+        }
+
         if not cuestionarios:
             raise HTTPException(
                 status_code=404, 
@@ -52,16 +58,12 @@ async def view_form(id: str, usuario_autenticado: dict = Depends(obtener_usuario
         return {
             "status": 200,
             "message": "Cuestionarios encontrados",
-            "user_id": int(usuario_autenticado.get("sub")),  # Convertir a int
-            "data": cuestionarios
+            "user_id": int(usuario_autenticado.get("sub")),  
+            "data": respuesta
         }
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error al obtener el cuestionario: {str(e)}"
-        )
         raise HTTPException(
             status_code=500,
             detail=f"Error al obtener el cuestionario: {str(e)}"

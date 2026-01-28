@@ -17,3 +17,18 @@ def guardar_cuestionario(id: str, username: str, preguntas: dict):
 # busca y devuelve el cuestionario 
 def obtener_cuestionarios(id: int):
     return list(COLLECCION.find({"_id": id}))
+
+def obtener_nucleo(id: int):
+    estudiante = COLLECCION.find_one({"_id": id})
+    estudiante_preguntas = estudiante.get("preguntas", {})
+    nucleo_familiar = estudiante_preguntas.get("tipo nucleo familiar")
+    if nucleo_familiar is None:
+        raise Exception("Núcleo familiar no encontrado en las respuestas del estudiante.")
+    if nucleo_familiar < 3:
+        return "poco apto para el credito, puede llegar a faltar a sus pagos"
+    elif nucleo_familiar == 3:
+        return "apto para el credito, tiene estabilidad familiar"
+    elif nucleo_familiar > 5:
+        return "muy apto para el credito, tiene una familia estable y con buenos ingresos"
+    return nucleo_familiar
+
