@@ -1,13 +1,14 @@
 from fastapi import APIRouter, HTTPException, Depends, Header
 from pydantic import BaseModel, Field
-from models import cuestionario
+from models import cuestionario, users
 from utils.jwt_handler import verificar_token, extraer_token_del_header
 from typing import Optional, Dict, Any
 
 # Modelo para validar los datos del formulario
 class FormRequest(BaseModel):
     id: str = Field(..., min_length=1, description="ID del formulario")
-    usuario: str = Field(..., min_length=1, description="Nombre del usuario")
+    correo: str = Field(..., min_length=5, description="Correo del usuario")
+    username: str = Field(..., min_length=1, description="Nombre del usuario")
     preguntas: Dict[str, Any] = Field(..., description="Respuestas del formulario")
 
 # Configuración del router
@@ -41,7 +42,7 @@ async def form(data: FormRequest, usuario_autenticado: dict = Depends(obtener_us
         user_id = int(usuario_autenticado.get("sub"))  # Convertir a int
         
         # Guardar el cuestionario
-        cuestionario.guardar_cuestionario(data.id, data.usuario, data.preguntas)
+        cuestionario.guardar_cuestionario(data.id,data.correo, data.username, data.preguntas)
         
         # Confirmar que se guardó
         confirmacion = cuestionario.obtener_cuestionarios(data.id)

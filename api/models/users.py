@@ -13,11 +13,12 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
 
 # funcion para registrar usuarios 
-def registrar_usuario(id: int, username: str, password: str):
+def registrar_usuario(id: int,correo: str, username: str, password: str):
     hashed_password = hash_password(password)
 
     nuevo_usuario = {
         "_id": id,
+        "correo": correo,
         "username": username,
         "password": hashed_password
     }
@@ -30,16 +31,17 @@ def registrar_usuario(id: int, username: str, password: str):
 
 
 # funcion para validar usuarios
-def validar_usuario(id: int, username: str) -> bool:
+def validar_usuario(id: int,correo:str, username: str) -> bool:
     return COLLECCION2.find_one({
         "$or": [
             {"_id": id},
+            {"correo": correo},
             {"username": username}
         ]
     }) is not None
 
 # funcion para iniciar sesion
-def iniciar_sesion(id: int, username: str, password: str) -> bool:
+def iniciar_sesion(id: int,correo:str, username: str, password: str) -> bool:
     """
     Busca al usuario por ID o username y valida la contraseña.
     El usuario debe existir con al menos uno de los dos identificadores.
@@ -48,6 +50,7 @@ def iniciar_sesion(id: int, username: str, password: str) -> bool:
     user = COLLECCION2.find_one({
         "$or": [
             {"_id": id},
+            {"correo": correo},
             {"username": username}
         ]
     })

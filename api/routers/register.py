@@ -5,6 +5,7 @@ from passlib.context import CryptContext
 # modelo de datos para el registro
 class RegisterRequest(BaseModel):
     id: int = Field(..., gt=0)
+    correo: str = Field(..., min_length=5)
     username: str = Field(..., min_length=3)
     password: str = Field(..., min_length=6)
 
@@ -17,17 +18,18 @@ router = APIRouter(
 )
 
 # registra un nuevo usuario
-def registrar_usuario(id: int, username: str, password: str):
-    if users.validar_usuario(id, username):
-        raise HTTPException(status_code=400, detail="El nombre de usuario o id ya existe")
+def registrar_usuario(id: int,correo:str, username: str, password: str):
+    if users.validar_usuario(id,correo, username):
+        raise HTTPException(status_code=400, detail="El nombre de usuario o id o correo ya existe")
     # Aquí se pasa la contraseña sin hashear, users.registrar_usuario() la hasheará
-    return users.registrar_usuario(id, username, password)
+    return users.registrar_usuario(id,correo, username, password)
 
 #endpoint "/register"
 @router.post("/", status_code=201)
 def register(data: RegisterRequest):
     nuevo_usuario = registrar_usuario(
         data.id,
+        data.correo,
         data.username,
         data.password
     )       

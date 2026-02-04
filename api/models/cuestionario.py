@@ -2,10 +2,11 @@ from database.db_mongo import COLLECCION
 
 
 #funcion de guardar cuestionario en la base de datos 
-def guardar_cuestionario(id: str, username: str, preguntas: dict):
+def guardar_cuestionario(id: str,correo:str, username: str, preguntas: dict):
     nuevo = {
         "_id": id,
-        "usuario": username,
+        "correo":correo,
+        "usermae": username,
         "preguntas":preguntas
     }
     try:

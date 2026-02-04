@@ -5,6 +5,7 @@ from utils.jwt_handler import crear_jwt
 
 class LoginRequest(BaseModel):
     id: int = Field(..., gt=0, description="ID del estudiante")
+    correo: str = Field(..., min_length=5, description="Correo del estudiante")
     username: str = Field(..., min_length=3, description="Nombre de usuario")
     password: str = Field(..., min_length=6, description="Contraseña")
 
@@ -20,7 +21,7 @@ async def login(data: LoginRequest):
     Endpoint para iniciar sesión.
     Valida las credenciales y retorna un JWT si son correctas.
     """
-    if users.iniciar_sesion(data.id, data.username, data.password):
+    if users.iniciar_sesion(data.id, data.correo, data.username, data.password):
         # Generar JWT para el usuario
         access_token = crear_jwt(data.id, data.username)
         return {
