@@ -18,7 +18,6 @@ origins = [
     "http://localhost:5173"
 ]
 
-
 #routers ( endpoints )
 app.include_router(login.router)
 app.include_router(forms.router)

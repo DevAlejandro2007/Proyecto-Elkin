@@ -22,7 +22,7 @@ API_HOST = os.getenv("API_HOST", "localhost")
 # ===================================
 SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:
-    raise ValueError("⚠️ SECRET_KEY no está configurado en .env")
+    raise ValueError(" SECRET_KEY no está configurado en .env")
 
 ALGORITHM = os.getenv("ALGORITHM", "HS256")
 TOKEN_EXPIRATION = int(os.getenv("TOKEN_EXPIRATION", 30))
